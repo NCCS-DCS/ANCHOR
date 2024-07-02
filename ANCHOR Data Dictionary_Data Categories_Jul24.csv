@@ -1,0 +1,17 @@
+Table_Name,Data Inclusion
+Person,"Gender
+Date of Birth
+Race"
+Death,"Death Date
+Cause of Death"
+Condition_occurrence,"Date of Diagnosis
+Diagnosis code"
+Measurement,"AJCC Edition
+Grade
+cT, cN, cM
+cStage
+pT, pN, pM
+pStage"
+Drug_exposure,Drugs prescribed
+Procedure_occurrence,"Radiotherapy
+Surgery"
