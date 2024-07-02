@@ -1,17 +1,21 @@
 Table_Name,Data Inclusion
-Person,"Gender
-Date of Birth
-Race"
-Death,"Death Date
-Cause of Death"
-Condition_occurrence,"Date of Diagnosis
-Diagnosis code"
-Measurement,"AJCC Edition
-Grade
-cT, cN, cM
-cStage
-pT, pN, pM
-pStage"
-Drug_exposure,Drugs prescribed
-Procedure_occurrence,"Radiotherapy
-Surgery"
+Person,Gender
+Person,Date of Birth
+Person,Race
+Death,Death Date
+Death,Cause of Death
+Condition_occurrence,Date of Diagnosis
+Condition_occurrence,Diagnosis code
+Measurement,AJCC Edition
+Measurement,Grade
+Measurement,cT
+Measurement,cN
+Measurement,cM
+Measurement,cStage
+Measurement,pT
+Measurement,pN
+Measurement,pM
+Measurement,pStage
+Drug_exposure,Drugs Prescribed
+Procedure_occurrence,Radiotherapy
+Procedure_occurrence,Surgery
