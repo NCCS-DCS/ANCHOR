@@ -1,4 +1,4 @@
-Table_Name,CDM Field,User Guide,Datatype,Primary Key,Foreign Key,FK Table,FK Domain
+Table Name,CDM Field,User Guide,Datatype,Primary Key,Foreign Key,FK Table,FK Domain
 Person,person_id,It is assumed that every person with a different unique identifier is in fact a different person and should be treated independently.,integer,Yes,No,,
 Person,study_id,,varchar(11),,,,
 Person,gender_concept_id,This field is meant to capture the biological sex at birth of the Person. This field should not be used to study gender identity issues.,integer,No,Yes,CONCEPT,Gender
@@ -24,7 +24,7 @@ Measurement,person_id,The PERSON_ID of the Person for whom the Measurement is re
 Measurement,measurement_concept_id,"The MEASUREMENT_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a measurement.",integer,No,Yes,CONCEPT,Measurement
 Measurement,measurement_date,Use this date to determine the date of the measurement.,date,No,No,,
 Measurement,measurement_type_concept_id,"This field can be used to determine the provenance of the Measurement record, as in whether the measurement was from an EHR system, insurance claim, registry, or other sources.",integer,No,Yes,CONCEPT,Type Concept
-Measurement,value_as_concept_id,If the raw data gives a categorial result for measurements those values are captured and mapped to standard concepts in the ‘Meas Value’ domain.,integer,No,Yes,CONCEPT,
+Measurement,value_as_concept_id,If the raw data gives a categorial result for measurements those values are captured and mapped to standard concepts in the â€˜Meas Valueâ€™ domain.,integer,No,Yes,CONCEPT,
 Measurement,value_source_value,This field houses the verbatim result value of the Measurement from the source data .,varchar(50),No,No,,
 Measurement,measurement_event_id,"If the Measurement record is related to another record in the database, this field is the primary key of the linked record.",integer,No,No,,
 Measurement,meas_event_field_concept_id,Link current measurement record to its respective condition_occurrence record. ,integer,No,Yes,CONCEPT,
@@ -33,7 +33,7 @@ Drug_exposure,person_id,The PERSON_ID of the PERSON for whom the drug dispensing
 Drug_exposure,drug_concept_id,"The DRUG_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source concept id which represents a drug product or molecule otherwise introduced to the body. The drug concepts can have a varying degree of information about drug strength and dose. This information is relevant in the context of quantity and administration information in the subsequent fields plus strength information from the DRUG_STRENGTH table, provided as part of the standard vocabulary download.",integer,No,Yes,CONCEPT,Drug
 Drug_exposure,drug_exposure_start_date,Use this date to determine the start date of the drug record.,date,No,No,,
 Drug_exposure,drug_exposure_end_date,The DRUG_EXPOSURE_END_DATE denotes the day the drug exposure ended for the patient.,date,No,No,,
-Drug_exposure,drug_type_concept_id,"You can use the TYPE_CONCEPT_ID to delineate between prescriptions written vs. prescriptions dispensed vs. medication history vs. patient-reported exposure, etc.",integer,No,Yes,CONCEPT,Type Concept
+Drug_exposure,drug_type_concept_id,"You can use the TYPE_CONCEPT_ID to delineate between prescriptions written vs.Â prescriptions dispensed vs.Â medication history vs.Â patient-reported exposure, etc.",integer,No,Yes,CONCEPT,Type Concept
 Procedure_occurrence,procedure_occurrence_id,The unique key given to a procedure record for a person. Refer to the ETL for how duplicate procedures during the same visit were handled.,integer,Yes,No,,
 Procedure_occurrence,person_id,The PERSON_ID of the PERSON for whom the procedure is recorded. This may be a system generated code.,integer,No,Yes,PERSON,
 Procedure_occurrence,procedure_concept_id,"The PROCEDURE_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a procedure",integer,No,Yes,CONCEPT,Procedure
