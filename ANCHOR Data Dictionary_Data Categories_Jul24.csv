@@ -2,7 +2,7 @@ Table_Name,Data Inclusion
 Person,Gender
 Person,Date of Birth
 Person,Race
-Death,Death Date
+Death,Date of Death
 Death,Cause of Death
 Condition_occurrence,Date of Diagnosis
 Condition_occurrence,Diagnosis code
