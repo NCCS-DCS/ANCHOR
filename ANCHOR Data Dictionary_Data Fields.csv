@@ -1,44 +1,45 @@
-Table Name,CDM Field,User Guide,Datatype,Primary Key,Foreign Key,FK Table,FK Domain
-Person,person_id,It is assumed that every person with a different unique identifier is in fact a different person and should be treated independently.,integer,Yes,No,,
-Person,study_id,,varchar(11),,,,
-Person,gender_concept_id,This field is meant to capture the biological sex at birth of the Person. This field should not be used to study gender identity issues.,integer,No,Yes,CONCEPT,Gender
-Person,year_of_birth,Compute age using year_of_birth.,integer,No,No,,
-Person,month_of_birth,,integer,No,No,,
-Person,day_of_birth,,integer,No,No,,
-Person,race_concept_id,This field captures race or ethnic background of the person.,integer,No,Yes,CONCEPT,Race
-Person,gender_source_value,This field is used to store the biological sex of the person from the source data. It is not intended for use in standard analytics but for reference only.,varchar(50),No,No,,
-Person,race_source_value,This field is used to store the race of the person from the source data. It is not intended for use in standard analytics but for reference only.,varchar(50),No,No,,
-Death,person_id,,integer,No,Yes,PERSON,
-Death,death_date,The date the person was deceased.,date,No,No,,
-Death,cause_source_value,,varchar(50),No,No,,
-Death,cause_source_concept_id,,integer,No,Yes,CONCEPT,
-Condition_occurrence,condition_occurrence_id,The unique key given to a condition record for a person. Refer to the ETL for how duplicate conditions during the same visit were handled.,integer,Yes,No,,
-Condition_occurrence,person_id,The PERSON_ID of the PERSON for whom the condition is recorded.,integer,No,Yes,PERSON,
-Condition_occurrence,condition_concept_id,"The CONDITION_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a condition",integer,No,Yes,CONCEPT,Condition
-Condition_occurrence,condition_start_date,Use this date to determine the start date of the condition,date,No,No,,
-Condition_occurrence,condition_type_concept_id,"This field can be used to determine the provenance of the Condition record, as in whether the condition was from an EHR system, insurance claim, registry, or other sources.",integer,No,Yes,CONCEPT,Type Concept
-Condition_occurrence,condition_source_value,"This field houses the verbatim value from the source data representing the condition that occurred. For example, this could be an ICD10 or Read code.",varchar(50),No,No,,
-Condition_occurrence,condition_source_concept_id,"This is the concept representing the condition source value and may not necessarily be standard. This field is discouraged from use in analysis because it is not required to contain Standard Concepts that are used across the OHDSI community, and should only be used when Standard Concepts do not adequately represent the source detail for the Condition necessary for a given analytic use case. Consider using CONDITION_CONCEPT_ID instead to enable standardized analytics that can be consistent across the network.",integer,No,Yes,CONCEPT,
-Measurement,measurement_id,The unique key given to a Measurement record for a Person. Refer to the ETL for how duplicate Measurements during the same Visit were handled.,integer,Yes,No,,
-Measurement,person_id,The PERSON_ID of the Person for whom the Measurement is recorded. This may be a system generated code.,integer,No,Yes,PERSON,
-Measurement,measurement_concept_id,"The MEASUREMENT_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a measurement.",integer,No,Yes,CONCEPT,Measurement
-Measurement,measurement_date,Use this date to determine the date of the measurement.,date,No,No,,
-Measurement,measurement_type_concept_id,"This field can be used to determine the provenance of the Measurement record, as in whether the measurement was from an EHR system, insurance claim, registry, or other sources.",integer,No,Yes,CONCEPT,Type Concept
-Measurement,value_as_concept_id,If the raw data gives a categorial result for measurements those values are captured and mapped to standard concepts in the ‘Meas Value’ domain.,integer,No,Yes,CONCEPT,
-Measurement,value_source_value,This field houses the verbatim result value of the Measurement from the source data .,varchar(50),No,No,,
-Measurement,measurement_event_id,"If the Measurement record is related to another record in the database, this field is the primary key of the linked record.",integer,No,No,,
-Measurement,meas_event_field_concept_id,Link current measurement record to its respective condition_occurrence record. ,integer,No,Yes,CONCEPT,
-Drug_exposure,drug_exposure_id,The unique key given to records of drug dispensings or administrations for a person. Refer to the ETL for how duplicate drugs during the same visit were handled.,integer,Yes,No,,
-Drug_exposure,person_id,The PERSON_ID of the PERSON for whom the drug dispensing or administration is recorded. This may be a system generated code.,integer,No,Yes,PERSON,
-Drug_exposure,drug_concept_id,"The DRUG_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source concept id which represents a drug product or molecule otherwise introduced to the body. The drug concepts can have a varying degree of information about drug strength and dose. This information is relevant in the context of quantity and administration information in the subsequent fields plus strength information from the DRUG_STRENGTH table, provided as part of the standard vocabulary download.",integer,No,Yes,CONCEPT,Drug
-Drug_exposure,drug_exposure_start_date,Use this date to determine the start date of the drug record.,date,No,No,,
-Drug_exposure,drug_exposure_end_date,The DRUG_EXPOSURE_END_DATE denotes the day the drug exposure ended for the patient.,date,No,No,,
-Drug_exposure,drug_type_concept_id,"You can use the TYPE_CONCEPT_ID to delineate between prescriptions written vs. prescriptions dispensed vs. medication history vs. patient-reported exposure, etc.",integer,No,Yes,CONCEPT,Type Concept
-Procedure_occurrence,procedure_occurrence_id,The unique key given to a procedure record for a person. Refer to the ETL for how duplicate procedures during the same visit were handled.,integer,Yes,No,,
-Procedure_occurrence,person_id,The PERSON_ID of the PERSON for whom the procedure is recorded. This may be a system generated code.,integer,No,Yes,PERSON,
-Procedure_occurrence,procedure_concept_id,"The PROCEDURE_CONCEPT_ID field is recommended for primary use in analyses, and must be used for network studies. This is the standard concept mapped from the source value which represents a procedure",integer,No,Yes,CONCEPT,Procedure
-Procedure_occurrence,procedure_date,Use this date to determine the date the procedure started.,date,No,No,,
-Procedure_occurrence,procedure_type_concept_id,"This field can be used to determine the provenance of the Procedure record, as in whether the procedure was from an EHR system, insurance claim, registry, or other sources.",integer,No,Yes,CONCEPT,Type Concept
-Procedure_occurrence,quantity,"If the quantity value is omitted, a single procedure is assumed.",integer,No,No,,
-Procedure_occurrence,procedure_source_value,"This field houses the verbatim value from the source data representing the procedure that occurred. For example, this could be an CPT4 or OPCS4 code.",varchar(50),No,No,,
-Procedure_occurrence,procedure_source_concept_id,"This is the concept representing the procedure source value and may not necessarily be standard. This field is discouraged from use in analysis because it is not required to contain Standard Concepts that are used across the OHDSI community, and should only be used when Standard Concepts do not adequately represent the source detail for the Procedure necessary for a given analytic use case. Consider using PROCEDURE_CONCEPT_ID instead to enable standardized analytics that can be consistent across the network.",integer,No,Yes,CONCEPT,
+Table Name,CDM Field,User Guide,Datatype
+Person,study_id,Anonymised study-specific patient id,varchar(11)
+Person,gender_concept_id,OMOP concept_id for Gender,integer
+Person,year_of_birth,Year of birth,integer
+Person,month_of_birth,Month of birth,integer
+Person,race_concept_id,OMOP concept_id for Race ,integer
+Person,gender_source_value,Source value for Gender,varchar(50)
+Person,race_source_value,Source value for Race,varchar(50)
+Death,study_id,Anonymised study-specific patient id,integer
+Death,death_date,Date of death,date
+Death,cause_source_value,Source value for Cause of Death,varchar(50)
+Condition_occurrence,condition_occurrence_id,Unique ID for each condition record,integer
+Condition_occurrence,study_id,Anonymised study-specific patient id,integer
+Condition_occurrence,condition_concept_id,OMOP concept_id for Diagnosis (eg 44499550 = 82633-C18.7),integer
+Condition_occurrence,condition_start_date,Diagnosis date,date
+Condition_occurrence,condition_type_concept_id,EHR,integer
+Condition_occurrence,condition_source_value,Source value for Diagnosis (eg. C18.7||Malignant neoplasm of sigmoid colon||82633||Adenocarcinoma in tubulovillous adenoma),varchar(50)
+Measurement,measurement_id,Unique ID for each measurement record,integer
+Measurement,study_id,Anonymised study-specific patient id,integer
+Measurement,measurement_concept_id,"Type of Measurements (eg. Grade, cT, cN, cM, cStage, pT, pN etc)",integer
+Measurement,measurement_date,Diagnosis date,date
+Measurement,measurement_type_concept_id,EHR,integer
+Measurement,value_as_concept_id,OMOP concept_id for Measurements (eg 35919548 = Grade 2),integer
+Measurement,value_source_value,"Source value of Measurements (eg Grade 2, T1, N1, M0, Stage IV)",varchar(50)
+Measurement,measurement_event_id,Link between this Measurement and other tables (eg. Condition_occurrence_id of the diagnosis that links to this Measurement),integer
+Measurement,meas_event_field_concept_id,Table name of the measurement_event_id (eg Condition_occurrence),integer
+Drug_exposure,drug_exposure_id,Unique ID for each Drug_exposure record,integer
+Drug_exposure,study_id,Anonymised study-specific patient id,integer
+Drug_exposure,drug_concept_id,OMOP concept_id for drug prescribed,integer
+Drug_exposure,drug_exposure_start_date,Drug prescribed start date,date
+Drug_exposure,drug_exposure_end_date,Drug prescribed end date,date
+Drug_exposure,drug_type_concept_id,EHR,integer
+Drug_exposure,drug_source_value,Source value for drugs prescribed with item code (eg 100000012G||BICALUTAMIDE TAB 50MG),varchar(50)
+Drug_exposure,SDD_Concept_ID_sddlite,SDD concept_id (eg 15731000133106),integer
+Procedure_occurrence,procedure_occurrence_id,Unique ID for each Procedure_occurrence record,integer
+Procedure_occurrence,study_id,Anonymised study-specific patient id,integer
+Procedure_occurrence,procedure_concept_id,OMOP concept_id for procedure,integer
+Procedure_occurrence,procedure_date,Procedure date,date
+Procedure_occurrence,procedure_type_concept_id,EHR,integer
+Procedure_occurrence,procedure_source_value,Source value for procedures (eg. VMAT),varchar(50)
+Procedure_occurrence,site_name,Site of procedure (for RT),integer
+Procedure_occurrence,intended_dose,intended dose (for RT),integer
+Procedure_occurrence,intended_fraction,intended fraction (for RT),integer
+Procedure_occurrence,delivered_dose,delivered dose (for RT),integer
+Procedure_occurrence,delivered_fraction,delivered fraction (for RT),integer
