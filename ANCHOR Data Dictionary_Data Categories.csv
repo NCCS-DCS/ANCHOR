@@ -1,11 +1,13 @@
-Table Name,Data Inclusion
+Table_Name,Data Inclusion
 Person,Gender
 Person,Date of Birth
 Person,Race
 Death,Date of Death
 Death,Cause of Death
 Condition_occurrence,Date of Diagnosis
-Condition_occurrence,Diagnosis code
+Condition_occurrence,Diagnosis Codes (icdo3 histo-topo)
+Condition_occurrence,Diagnosis Codes (histo only)
+Condition_occurrence,Diagnosis Codes (icdo9/10 sites only)
 Measurement,AJCC Edition
 Measurement,Grade
 Measurement,cT
